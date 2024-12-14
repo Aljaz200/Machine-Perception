@@ -11,3 +11,8 @@ Seznam rešenih domačih nalog:
 - Assignment 3: Image segmentation and object detection
 - Assignment 4: Feature points, matching, homography
 - Assignment 5: Epipolar geometry and triangulation
+
+
+```bash
+pip install -r requirements.txt
+```
