@@ -1,5 +1,5 @@
 # Umetno zaznavanje
-Delo pri predmetu Umetno zaznavanje (python) UNI, Fakulteta za računalništvo in informatiko, Univerza v Ljubljani, 2023/24:
+Delo pri predmetu Umetno zaznavanje (python) UNI, Fakulteta za računalništvo in informatiko, Univerza v Ljubljani, 2024/25:
 
 - rešene domače naloge,
 - python skript za pretvorbo Jupyter notebookov v python skripte.
