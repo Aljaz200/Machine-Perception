@@ -13,7 +13,7 @@ Seznam rešenih domačih nalog:
 - Assignment 5: Epipolar geometry and triangulation
 
 
-### Za namestitev potrebnih knjižnic uporabite ukaz:
+### Za namestitev potrebnih knjižnic:
 
 ```bash
 pip install -r requirements.txt
