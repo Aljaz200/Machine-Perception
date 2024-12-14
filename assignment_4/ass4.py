@@ -3,7 +3,7 @@
 
 # ## Exercise 1: Feature points detectors
 
-# In[2]:
+# In[1]:
 
 
 import numpy as np

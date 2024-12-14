@@ -16,3 +16,5 @@ python_filename = notebook_filename.replace('.ipynb', '.py')
 # Shranite Python skripto
 with open(python_filename, 'w') as f:
     f.write(body)
+
+print(f'Python skripta je bila shranjena kot {python_filename}')

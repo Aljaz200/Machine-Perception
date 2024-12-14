@@ -3,7 +3,7 @@
 
 # ## Exercise 1: Image derivatives
 
-# In[17]:
+# In[2]:
 
 
 import numpy as np
@@ -31,6 +31,11 @@ def gaussdx(sigma):
     gx = -x / (np.sqrt(2 * np.pi) * sigma ** 3) * np.exp(-x ** 2 / (2 * sigma ** 2))
     gx /= np.sum(np.abs(gx))
     return gx
+
+plt.plot(gauss(5))
+plt.show()
+plt.plot(gaussdx(5))
+plt.show()
 
 
 # In[18]:
@@ -184,7 +189,7 @@ def compare_histograms(h1, h2, metoda):
         distance = np.sqrt(0.5 * np.sum((np.sqrt(h1) - np.sqrt(h2)) ** 2))
     
     else:
-        raise ValueError(f"NapaÄna metoda: {metoda}")
+        raise ValueError(f"Napaèna metoda: {metoda}")
     
     return distance
 
@@ -382,7 +387,7 @@ image_retrieval2("../assignment_2/dataset", image, 8, utezi = utez)
 def findedges(image, sigma, theta):
     magnitude, _ = gradient_magnitude(image, sigma)
 
-    edges = np.where(magnitude >= theta, 1, 0) # namesto magnitude sem uporabil 1, ker se boljÅ¡e vidi
+    edges = np.where(magnitude >= theta, 1, 0) # namesto magnitude sem uporabil 1, ker se boljše vidi
 
     return edges
 
@@ -870,7 +875,7 @@ plt.show()
     
 
 
-# In[31]:
+# In[ ]:
 
 
 def hough_krogi(edge_image, radius, n=10):
@@ -881,8 +886,8 @@ def hough_krogi(edge_image, radius, n=10):
     
     for x, y in zip(x_e, y_e):
         for theta in np.linspace(0, 2 * np.pi, 360):
-            a = int(x - radius * np.cos(theta))
-            b = int(y - radius * np.sin(theta))
+            a = int(x - radius * np.cos(theta)) # x = a + cos(theta)
+            b = int(y - radius * np.sin(theta)) # y = b + sin(theta)
             if 0 <= a < w and 0 <= b < h:
                 accumulator[b, a] += 1
     
