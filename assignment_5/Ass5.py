@@ -10,7 +10,6 @@ import numpy as np
 import matplotlib.pyplot as plt
 import a5_utils
 import cv2
-from scipy.signal import medfilt
 
 f = 0.0025
 T = 0.12
@@ -29,6 +28,15 @@ plt.show()
 
 
 # #### What is the relation between the distance of the object (point p in Figure 1) to the camera and the disparity d? What happens to disparity when the object is close to the cameras and what when it is far away?
+# 
+# d = x1 - x2
+# x1 / f = px / pz
+# -x2 / f = (T - px) / pz
+# 
+# x1 = f * px / pz
+# x2 = -f * (T - px) / pz
+# 
+# d = x1 - x2 = f * px / pz + f * (T - px) / pz = (f * px + f * T - f * px) / pz = f * T / pz
 # 
 # d = f * T / pz
 # 
@@ -99,15 +107,15 @@ def fundamental_matrix(points):
 
     A = []
     for (x1, y1), (x2, y2) in zip(normalized_left[:, :2], normalized_right[:, :2]):
-        A.append([x1 * x2, x1 * y2, x1, y1 * x2, y1 * y2, y1, x2, y2, 1])
+        A.append([x1 * x2, x1 * y2, x1, y1 * x2, y1 * y2, y1, x2, y2, 1]) # sistem linearnih enaèb
     A = np.array(A)
 
     _, _, Vt = np.linalg.svd(A)
-    F_hat = Vt[-1].reshape(3, 3)
+    F_hat = Vt[-1].reshape(3, 3) # transponiramo zadnji lastni vektor v matriko 3x3
 
-    U, S, Vt = np.linalg.svd(F_hat)
-    S[-1] = 0
-    F_hat = U @ np.diag(S) @ Vt
+    U, S, Vt = np.linalg.svd(F_hat) # ponovimo razcep na lastne vrednosti in lastne vektorje
+    S[-1] = 0 # zadnjo lastno vrednost postavimo na 0
+    F_hat = U @ np.diag(S) @ Vt # sestavimo nazaj matriko F
 
     F = T1.T @ F_hat @ T2
     return F.T
@@ -158,6 +166,8 @@ plt.show()
 def reprojection_error(F, p1, p2):
     p1_hom = np.append(p1, 1)
     p2_hom = np.append(p2, 1)
+
+    # distance(ax + by + c = 0, (x0, y0)) = |a * x0 + b * y0 + c| / sqrt(a^2 + b^2) -> razdalja toèke od premice
     
     l2 = F @ p1_hom
     a, b, c = l2
@@ -204,10 +214,12 @@ def triangulate(points, P1, P2):
         A[1] = y1 * P1[2] - P1[1]
         A[2] = x2 * P2[2] - P2[0]
         A[3] = y2 * P2[2] - P2[1]
+
+        # rešimo sistem linearnih enaèb
         
         _, _, Vt = np.linalg.svd(A)
         X = Vt[-1]
-        X /= X[-1]
+        X /= X[-1] # normalizacija
         points_3D.append(X[:3])
     
     return np.array(points_3D)
@@ -224,7 +236,7 @@ points_3D = triangulate(points, P1, P2)
 T = np.array([[-1, 0, 0], 
               [0, 0, -1], 
               [0, 1, 0]])
-points_3d_transformed = points_3D @ T.T
+points_3d_transformed = points_3D @ T.T # transformacija za prikaz v kooridnatnem sistemu
 
 
 image_left = cv2.imread('data/epipolar/house1.jpg', cv2.IMREAD_GRAYSCALE)
