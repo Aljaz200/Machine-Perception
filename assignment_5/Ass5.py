@@ -3,7 +3,7 @@
 
 # ## Exercise 1: Disparity
 
-# In[1]:
+# In[2]:
 
 
 import numpy as np
@@ -43,7 +43,7 @@ plt.show()
 # Disparity d is inversely proportional to the distance of the object to the camera. When the object is close to the cameras, the disparity is large, and when the object is far away, the disparity is small.
 # 
 
-# In[2]:
+# In[3]:
 
 
 def calculate_disparity_distance(f, T, x1, x2, pixel_width):
@@ -74,7 +74,7 @@ print(f"Razdalja objekta: {pz2:.2f} m")
 
 # ## Exercise 2: Fundamental matrix, epipoles, epipolar lines
 
-# In[3]:
+# In[5]:
 
 
 F = np.array([
@@ -93,6 +93,12 @@ for point in points_left:
 for i, line in enumerate(epipolar_lines):
     print(f"Epipolarna èrta za toèko {points_left[i][:-1]}:")
     print(f"l' = {line[0]:.2f} * u' + {line[1]:.2f} * v' + {line[2]:.2f} -> [u', v', 1] * l' = 0")
+    rez = line[0] * points_left[i][0] + line[1] * points_left[i][1] + line[2] * points_left[i][2]
+    print(f"Rez: {rez:.2f}")
+    if rez == 0:
+        print("Pravilno!")
+    else:
+        print("Ni epipolarne èrte na desni sliki.")
 
 
 # In[4]:
