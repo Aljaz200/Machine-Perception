@@ -1,19 +1,21 @@
-# Umetno zaznavanje
-Delo pri predmetu Umetno zaznavanje (python) UNI, Fakulteta za računalništvo in informatiko, Univerza v Ljubljani, 2024/25:
+# Machine Perception
+Coursework for the Machine Perception (Python) course at the Faculty of Computer and Information Science, University of Ljubljana, 2024/25:
 
-- rešene domače naloge,
-- python skript za pretvorbo Jupyter notebookov v python skripte.
+- Completed assignments,
+- A Python script for converting Jupyter Notebooks into Python scripts.
 
-Seznam rešenih domačih nalog:
+## List of Completed Assignments:
 ----------
-- Assignment 1: Basic image processing and histograms
-- Assignment 2: Recognition using histograms, convolution, and image filtering
-- Assignment 3: Image segmentation and object detection
-- Assignment 4: Feature points, matching, homography
-- Assignment 5: Epipolar geometry and triangulation
-- Assignment 6: Reduction of dimensionality and recognition
+- **Assignment 1**: Basic Image Processing and Histograms  
+- **Assignment 2**: Recognition Using Histograms, Convolution, and Image Filtering  
+- **Assignment 3**: Image Segmentation and Object Detection  
+- **Assignment 4**: Feature Points, Matching, and Homography  
+- **Assignment 5**: Epipolar Geometry and Triangulation  
+- **Assignment 6**: Dimensionality Reduction and Recognition  
 
-### Za namestitev potrebnih knjižnic:
+### Installing Required Libraries:
+
+To install the necessary dependencies, run:
 
 ```bash
 pip install -r requirements.txt
